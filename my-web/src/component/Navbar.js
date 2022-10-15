@@ -1,10 +1,14 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import logo from '../assets/logo.png';
 import Avatar from '@mui/material/Avatar';
+import { useNavigate } from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 function Navbar(props) {
+    const navigate = useNavigate();
+    const logo = useSelector((state) => state.image.logo);
+
     return (
         <Container
             sx={{
@@ -22,6 +26,7 @@ function Navbar(props) {
                     width: "75px",
                     height: "75px"
                 }}
+                onClick={() => navigate("/")}
             />
             <Container
                 sx={{
@@ -31,10 +36,26 @@ function Navbar(props) {
                 }}
                 maxWidth={false}
             >
-                <Button>Our Services</Button>
-                <Button>Contact Us</Button>
-                <Button>About Us</Button>
-                <Button>Galleries</Button>
+                <Button
+                    onClick={() => navigate('/packages')}
+                >
+                    Our Packages
+                </Button>
+                <Button
+                    onClick={() => navigate('/contact-us')}
+                >
+                    Contact Us
+                </Button>
+                <Button
+                    onClick={() => navigate('/about-us')}
+                >
+                    About Us
+                </Button>
+                <Button
+                    onClick={() => navigate('/galleries')}
+                >
+                    Galleries
+                </Button>
             </Container>
         </Container>
     );
